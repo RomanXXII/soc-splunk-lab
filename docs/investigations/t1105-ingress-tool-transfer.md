@@ -14,7 +14,7 @@ The goal was to determine whether the activity could be identified and reconstru
 
 ### Initial Observation
 
-The investigation began with a Sysmon Event ID 3 (Network Connection) event indicating that PowerShell established an outbound connection to a particular web server.
+The investigation began with a Sysmon Event ID 3 (Network Connection) event in Splunk indicating that PowerShell established an outbound connection to a particular web server.
 
 Relevant observations included:
 
@@ -63,4 +63,4 @@ The activity was successfully reconstructed using Sysmon process creation and ne
 
 ## Lessons Learned
 
-This investigation demonstrated the importance of correlating multiple telemetry sources rather than relying on a single event. Additionally, it conveyed the importance of utilizing timeframes when investigating logs, especially within a sea of typical processes. Even without a file creation event, process creation telemetry and network telemetry were sufficient to establish what occurred and reconstruct the attack chain.
+This investigation demonstrated the importance of correlating multiple telemetry sources after alert of one suspicious event, along with the importance of utilizing timeframes when investigating logs, especially within a sea of typical processes. It is also vital to understand the limitations of logging tools to edit or pivot accordingly, as incomplete setups or omitted logs may affect findings and results in unexpected ways. However, even without a file creation event, process creation telemetry and network telemetry were sufficient to establish what occurred and reconstruct the attack chain.
