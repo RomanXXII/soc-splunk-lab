@@ -40,7 +40,7 @@ Opening the Event ID 1 record revealed Invoke-WebRequest, along with http://ATTA
 
 ![EventCode 3 Event](../../screenshots/t1105/splunk-full-event-download-log.png)
 
-Both the Event ID 1 and Event ID 3 processes showed ProcessID: 10440 and similar Image and Destination Port, establishing that the PowerShell Request, Invoke-WebRequest, HTTP Connection, and ATTACKER_HOST:8000 stemmed from the same activity.
+Since the PowerShell request invoked a Web Request, there must be a related Event ID 3 Network Connection event. After a search, both the Event ID 1 and Event ID 3 processes showed ProcessID: 10440 and similar Image and Destination Port, establishing that the PowerShell Request, Invoke-WebRequest, HTTP Connection, and ATTACKER_HOST:8000 stemmed from the same activity.
 
 ![EventCode 3 Event](../../screenshots/t1105/splunk-event3-ipconnection.png)
 
@@ -61,7 +61,7 @@ Sysmon Event ID 3
 powershell.exe establishes TCP connection
 to ATTACKER_HOST on port 8000
 
-14:09:40+
+14:09:40
 attacktest2.txt appears on disk
 
 ## Findings
