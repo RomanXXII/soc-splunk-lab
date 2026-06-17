@@ -31,14 +31,25 @@ Each stage of this lab's development logs troubleshooting and subsequent lessons
 
 ```text
 .
-├── README.md
-├── docs
-│   ├── architecture.md
-│   ├── setup.md
-│   └── investigations
-│       ├── t1105-ingress-tool-transfer.md
-│       └── t1110-failed-authentication.md
-└── screenshots
+|-- README.md
+|-- docs
+|   |-- architecture.md
+|   |-- setup.md
+|   `-- investigations
+|       |-- t1105-ingress-tool-transfer.md
+|       `-- t1110-failed-authentication.md
+`-- screenshots
+    |-- t1105
+    |   |-- 01-host-payload-download-log.png
+    |   |-- 02-powershell-process-search.png
+    |   |-- 03-powershell-download-event.png
+    |   `-- 04-network-connection-event.png
+    `-- t1110
+        |-- 01-security-event-review.png
+        |-- 02-failed-logon-alerts.png
+        |-- 03-local-failed-logon-details.png
+        |-- 04-remote-logon-events.png
+        `-- 05-remote-failed-logon-details.png
 ```
 
 ## Disclaimer

@@ -8,7 +8,7 @@ Simulate an attacker downloading a file from a remote host and investigate the r
 
 A Kali Linux system hosted a file using a Python HTTP server, and a PowerShell command executed on the Windows endpoint downloaded the file from the remote host.
 
-![Kali Linux Payload Hosting](../../screenshots/t1105/host-payload-and-download-log-kali.png)
+![Kali Linux Payload Hosting](../../screenshots/t1105/01-host-payload-download-log.png)
 
 The goal was to determine whether the activity could be identified and reconstructed using endpoint telemetry.
 
@@ -33,16 +33,16 @@ To determine what PowerShell was actually doing, a search was performed for Even
 
 Initially, most results related to splunk-powershell.exe, which related to Splunk's internal helper process. After timestamp isolation, one process with a ParentImage unique from splunkd.exe suggested relation to the PowerShell request.
 
-![Powershell and Eventcode Search](../../screenshots/t1105/splunk-powershell-log-search.png)
+![Powershell and Eventcode Search](../../screenshots/t1105/02-powershell-process-search.png)
 
 
 Opening the Event ID 1 record revealed Invoke-WebRequest, along with http://ATTACKER_HOST:8000/attacktest2.txt and -Outfile C:\Temp\attack2.txt, revealing that the command line itself explicitly invoked a request to download attacktest2.txt from the remote host and save it locally.
 
-![EventCode 3 Event](../../screenshots/t1105/splunk-full-event-download-log.png)
+![EventCode 3 Event](../../screenshots/t1105/03-powershell-download-event.png)
 
 Since the PowerShell request invoked a Web Request, there must be a related Event ID 3 Network Connection event. After a search, both the Event ID 1 and Event ID 3 processes showed ProcessID: 10440 and similar Image and Destination Port, establishing that the PowerShell Request, Invoke-WebRequest, HTTP Connection, and ATTACKER_HOST:8000 stemmed from the same activity.
 
-![EventCode 3 Event](../../screenshots/t1105/splunk-event3-ipconnection.png)
+![EventCode 3 Event](../../screenshots/t1105/04-network-connection-event.png)
 
 The corresponding Event ID 11 was unabled to be located, assumedly due to Splunk filtering, but since attack2.txt was present on disk, the process creation event, network event, and resulting file artifact were sufficient to confirm the transfer.
 

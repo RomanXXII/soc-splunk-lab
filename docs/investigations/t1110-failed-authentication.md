@@ -18,17 +18,17 @@ The objective was to determine whether the source of the authentication attempt,
 
 In both scenarios, reviewing recent events in Splunk revealed multiple Windows Security Event ID 4625 records, or that an account failed to log on.
 
-![Initial Security Review](../../screenshots/t1110/logged-security-attempts.png)
+![Initial Security Review](../../screenshots/t1110/01-security-event-review.png)
 
 Several authentication failures were observed within a short period of time, suggesting repeated login attempts against the endpoint.
 
-![5 Alerts Found](../../screenshots/t1110/5-attempts-found.png)
+![5 Alerts Found](../../screenshots/t1110/02-failed-logon-alerts.png)
 
 ### Local Authentication Failure Analysis
 
 The first investigation focused on locally generated authentication failures.
 
-![In Depth Log](../../screenshots/t1110/in-depth-log.png)
+![In Depth Log](../../screenshots/t1110/03-local-failed-logon-details.png)
 
 Analysis of the events revealed:
 
@@ -50,9 +50,9 @@ This established a baseline for how local authentication failures appear in Wind
 
 A second round of authentication attempts on the Windows system was performed via the Kali Linux system.
 
-![Kali Logon Events](../../screenshots/t1110/kali-logon-attempts.png)
+![Kali Logon Events](../../screenshots/t1110/04-remote-logon-events.png)
 
-![Kali In Depth Log](../../screenshots/t1110/kali-logon-attempt-indepth.png)
+![Kali In Depth Log](../../screenshots/t1110/05-remote-failed-logon-details.png)
 
 Unlike the previous events, these new ID 4625 Splunk records contained:
 
