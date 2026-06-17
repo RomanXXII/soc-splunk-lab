@@ -23,7 +23,19 @@ See docs/architecture.md for details.
 | T1105 | Ingress Tool Transfer |
 | T1110 | Failed Authentication |
 
-## Retrospective
+## Lessons Learned
+
+Building a functional SOC lab required significantly more effort than simply installing security tools and running tests. The majority of challenges involved validating telemetry, troubleshooting event collection, configuring Windows logging, and ensuring reliable communication between systems.
+
+Several key lessons emerged throughout development:
+
+* Security monitoring is only as effective as the underlying telemetry pipeline. Before investigations could begin, Sysmon, Splunk Universal Forwarder, and Splunk Enterprise all had to be validated and tested.
+* Many investigations began with a single event and required correlation across multiple log sources to reconstruct what occurred. Process creation, network connection, and authentication events often provided complementary pieces of the same story.
+* The same event type can represent very different activities depending on context. For example, Windows Event ID 4625 may indicate a harmless local login failure or a potentially suspicious remote authentication attempt.
+* Simulating attacks is only one part of security analysis. Understanding how to investigate activity, interpret metadata, and distinguish between benign and suspicious behavior proved equally important.
+* Troubleshooting infrastructure issues such as firewall policies, network configuration, event subscriptions, and log forwarding provided valuable experience in maintaining security monitoring systems.
+
+This project developed practical experience with endpoint telemetry, SIEM workflows, attack simulation, incident investigation, and the challenges involved in building a reliable monitoring environment from the ground up.
 
 ## Repository Structure
 
